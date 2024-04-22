@@ -17,36 +17,24 @@ List<Lesson> lessonList = [
     duration: '11 min 20 sec',
     isCompleted: true,
     isPlaying: true,
-    name: "Why Flutter Development",
+    name: "Principios de la programacion",
   ),
   Lesson(
     duration: '10 min 11 sec',
     isCompleted: false,
     isPlaying: false,
-    name: "Setup Flutter on MacOS",
+    name: "Arreglos y Matrices en Java",
   ),
   Lesson(
     duration: '7 min',
     isCompleted: false,
     isPlaying: false,
-    name: "Setup Flutter on Windows",
+    name: "POO en Java",
   ),
   Lesson(
     duration: '5 min',
     isCompleted: false,
     isPlaying: false,
-    name: "Introduction to Flutter widgets.",
+    name: "MVC en Java.",
   ),
-  Lesson(
-    duration: '5 min',
-    isCompleted: false,
-    isPlaying: false,
-    name: "What are Stateless Widgets?",
-  ),
-  Lesson(
-    duration: '5 min',
-    isCompleted: false,
-    isPlaying: false,
-    name: "What are Statefull Widgets?",
-  )
 ];

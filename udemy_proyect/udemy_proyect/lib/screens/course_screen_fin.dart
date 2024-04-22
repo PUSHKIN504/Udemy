@@ -1,6 +1,6 @@
 import 'package:udemy_proyect/constants/color.dart';
 import 'package:udemy_proyect/models/course_fin.dart';
-import 'package:udemy_proyect/screens/details_screen.dart';
+import 'package:udemy_proyect/screens/details_screen_fin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -88,7 +88,7 @@ class CourseContainer extends StatelessWidget {
       onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => DetailsScreen(
+              builder: (context) => DetailsScreenFin(
                     title: course.name,
                   ))),
       child: Container(
