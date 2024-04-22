@@ -3,6 +3,7 @@ import 'package:udemy_proyect/constants/color.dart';
 import 'package:udemy_proyect/constants/icons.dart';
 import 'package:udemy_proyect/constants/size.dart';
 import 'package:udemy_proyect/screens/featuerd_screen.dart';
+import 'package:udemy_proyect/screens/mis_curso.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -38,7 +39,7 @@ class _BaseScreenState extends State<BaseScreen> {
   }
   static const List<Widget> _widgetOptions = <Widget>[
     FeaturedScreen(),
-    FeaturedScreen(),
+    MisCursosScreen(),
     FeaturedScreen(),
     FeaturedScreen(),
   ];

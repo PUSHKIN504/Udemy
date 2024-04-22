@@ -17,7 +17,7 @@ List<Category> categoryList = [
     thumbnail: 'assets/images/icons/laptop.jpg',
   ),
   Category(
-    name: 'Informatica',
+    name: 'Ofimatica',
     noOfCourses: 20,
     thumbnail: 'assets/images/icons/accounting.jpg',
   ),
