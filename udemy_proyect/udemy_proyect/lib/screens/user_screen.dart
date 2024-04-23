@@ -7,6 +7,7 @@ import 'package:udemy_proyect/widgets/appbar_widget.dart';
 import 'package:udemy_proyect/widgets/button_widget.dart';
 import 'package:udemy_proyect/widgets/numbers_widget.dart';
 import 'package:udemy_proyect/widgets/profile_widget.dart';
+// ignore: camel_case_types
 class user_screen extends StatefulWidget {
   const user_screen({super.key});
 
@@ -15,14 +16,17 @@ class user_screen extends StatefulWidget {
   _user_screenState createState() => _user_screenState();
 }
 
+// ignore: camel_case_types
 class _user_screenState extends State<user_screen> {
   @override
   Widget build(BuildContext context) {
+    // ignore: prefer_const_declarations
     final user = UserPreferences.myUser;
 
     return Scaffold(
       appBar: buildAppBar(context),
       body: ListView(
+        // ignore: prefer_const_constructors
         physics: BouncingScrollPhysics(),
         children: [
           ProfileWidget(
@@ -46,11 +50,13 @@ class _user_screenState extends State<user_screen> {
         children: [
           Text(
             user.name,
+            // ignore: prefer_const_constructors
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
           const SizedBox(height: 4),
           Text(
             user.email,
+            // ignore: prefer_const_constructors
             style: TextStyle(color: Colors.grey),
           )
         ],
@@ -62,17 +68,21 @@ class _user_screenState extends State<user_screen> {
       );
 
   Widget buildAbout(User user) => Container(
+        // ignore: prefer_const_constructors
         padding: EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // ignore: prefer_const_constructors
             Text(
               '',
+              // ignore: prefer_const_constructors
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             Text(
               user.about,
+              // ignore: prefer_const_constructors
               style: TextStyle(fontSize: 16, height: 1.4),
             ),
           ],

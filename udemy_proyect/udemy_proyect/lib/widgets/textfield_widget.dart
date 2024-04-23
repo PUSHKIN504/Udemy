@@ -6,6 +6,7 @@ class TextFieldWidget extends StatefulWidget {
   final String text;
   final ValueChanged<String> onChanged;
 
+  // ignore: use_super_parameters
   const TextFieldWidget({
     Key? key,
     this.maxLines = 1,
@@ -15,6 +16,7 @@ class TextFieldWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _TextFieldWidgetState createState() => _TextFieldWidgetState();
 }
 
@@ -41,6 +43,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         children: [
           Text(
             widget.label,
+            // ignore: prefer_const_constructors
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           const SizedBox(height: 8),

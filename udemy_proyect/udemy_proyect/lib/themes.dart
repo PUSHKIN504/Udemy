@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyThemes {
+  // ignore: prefer_const_declarations
   static final primary = Colors.blue;
   static final primaryColor = Colors.blue.shade300;
 
