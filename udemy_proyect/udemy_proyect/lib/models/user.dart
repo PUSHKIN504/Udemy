@@ -1,18 +1,18 @@
 class User {
-  String image;
-  String name;
-  String email;
-  String phone;
-  String aboutMeDescription;
+  final String imagePath;
+  final String name;
+  final String email;
+  final String about;
+  final bool isDarkMode;
 
-  // Constructor
-  User({
-    required this.image,
+  const User({
+    required this.imagePath,
     required this.name,
     required this.email,
-    required this.phone,
-    required this.aboutMeDescription,
+    required this.about,
+    required this.isDarkMode,
   });
+
 
   User copy({
     String? imagePath,
@@ -46,4 +46,5 @@ class User {
         'about': aboutMeDescription,
         'phone': phone,
       };
+
 }

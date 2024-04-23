@@ -19,6 +19,7 @@ class _BaseScreenState extends State<BaseScreen> {
     FeaturedScreen(),
     FeaturedScreen(),
     FeaturedScreen(),
+    
   ];
   @override
   Widget build(BuildContext context) {
@@ -64,6 +65,16 @@ class _BaseScreenState extends State<BaseScreen> {
                 height: kBottomNavigationBarItemSize,
               ),
               label: "Configuracion",
+            ), BottomNavigationBarItem(
+              activeIcon: Image.asset(
+                icFeatured,
+                height: kBottomNavigationBarItemSize,
+              ),
+              icon: Image.asset(
+                icFeaturedOutlined,
+                height: kBottomNavigationBarItemSize,
+              ),
+              label: "Dashboard's",
             ),
           ],
           currentIndex: _selectedIndex,
