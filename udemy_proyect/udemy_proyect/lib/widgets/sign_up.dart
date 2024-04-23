@@ -1,11 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:udemy_proyect/widgets/theme.dart';
 // ignore: unused_import
 import 'package:udemy_proyect/widgets/snackbar.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+  // ignore: use_key_in_widget_constructors
+  const SignUp({Key? key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -15,25 +19,58 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final FocusNode focusNodePassword = FocusNode();
   final FocusNode focusNodeConfirmPassword = FocusNode();
+  final FocusNode focusNodeApellido = FocusNode();
+  final FocusNode focusNodeUsuario = FocusNode();
   final FocusNode focusNodeEmail = FocusNode();
   final FocusNode focusNodeName = FocusNode();
 
   bool _obscureTextPassword = true;
   bool _obscureTextConfirmPassword = true;
 
-  TextEditingController signupEmailController = TextEditingController();
   TextEditingController signupNameController = TextEditingController();
+  TextEditingController signupEmailController = TextEditingController();
   TextEditingController signupPasswordController = TextEditingController();
-  TextEditingController signupConfirmPasswordController =
-      TextEditingController();
+  TextEditingController signupUsuarioController = TextEditingController();
+  TextEditingController signupApellidoController = TextEditingController();
+  TextEditingController signupConfirmPasswordController = TextEditingController();
 
-  @override
-  void dispose() {
-    focusNodePassword.dispose();
-    focusNodeConfirmPassword.dispose();
-    focusNodeEmail.dispose();
-    focusNodeName.dispose();
-    super.dispose();
+  Future<void> _registerUser() async {
+    final String name = signupNameController.text;
+    final String apellido = signupApellidoController.text;
+    final String usuario = signupUsuarioController.text;
+    final String email = signupEmailController.text;
+    final String password = signupPasswordController.text;
+    // ignore: unused_local_variable
+    final String confirmPassword = signupConfirmPasswordController.text;
+
+    // Validar campos aquí si es necesario antes de enviar los datos
+
+    final Map<String, dynamic> userData = {
+      'usu_Nombre': name,
+      'usu_Usuario': usuario,
+      'usu_CorreoElectronico': email,
+      'usu_Contrasena': password,
+      'usu_Apellido': apellido,
+      // Agregar más campos según sea necesario
+    };
+
+    final Uri url = Uri.parse('URL_DE_TU_API_AQUÍ');
+
+    final http.Response response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(userData),
+    );
+
+    if (response.statusCode == 200) {
+      // Éxito, el usuario ha sido registrado
+      // Puedes mostrar un mensaje de éxito o navegar a otra pantalla
+    } else {
+      // Error al registrar al usuario
+      // Puedes mostrar un mensaje de error o manejar la respuesta según sea necesario
+    }
   }
 
   @override
@@ -53,7 +90,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 child: SizedBox(
                   width: 300.0,
-                  height: 360.0,
+                  height: 600.0,
                   child: Column(
                     children: <Widget>[
                       Padding(
@@ -93,6 +130,37 @@ class _SignUpState extends State<SignUp> {
                         padding: const EdgeInsets.only(
                             top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
                         child: TextField(
+                          focusNode: focusNodeApellido,
+                          controller: signupApellidoController,
+                          autocorrect: false,
+                          style: const TextStyle(
+                              fontFamily: 'WorkSansSemiBold',
+                              fontSize: 16.0,
+                              color: Colors.black),
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            icon: Icon(
+                              FontAwesomeIcons.user,
+                              color: Colors.black,
+                            ),
+                            hintText: 'Apellido',
+                            hintStyle: TextStyle(
+                                fontFamily: 'WorkSansSemiBold', fontSize: 16.0),
+                          ),
+                          onSubmitted: (_) {
+                            focusNodePassword.requestFocus();
+                          },
+                        ),
+                      ),
+                      Container(
+                        width: 250.0,
+                        height: 1.0,
+                        color: Colors.grey[400],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
+                        child: TextField(
                           focusNode: focusNodeEmail,
                           controller: signupEmailController,
                           keyboardType: TextInputType.emailAddress,
@@ -108,6 +176,36 @@ class _SignUpState extends State<SignUp> {
                               color: Colors.black,
                             ),
                             hintText: 'Correo electrónico',
+                            hintStyle: TextStyle(
+                                fontFamily: 'WorkSansSemiBold', fontSize: 16.0),
+                          ),
+                          onSubmitted: (_) {
+                            focusNodePassword.requestFocus();
+                          },
+                        ),
+                      ),
+                       Container(
+                        width: 250.0,
+                        height: 1.0,
+                        color: Colors.grey[400],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
+                        child: TextField(
+                          focusNode: focusNodeUsuario,
+                          controller: signupUsuarioController,
+                          style: const TextStyle(
+                              fontFamily: 'WorkSansSemiBold',
+                              fontSize: 16.0,
+                              color: Colors.black),
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            icon: Icon(
+                              FontAwesomeIcons.envelope,
+                              color: Colors.black,
+                            ),
+                            hintText: 'Usuario',
                             hintStyle: TextStyle(
                                 fontFamily: 'WorkSansSemiBold', fontSize: 16.0),
                           ),
@@ -186,7 +284,7 @@ class _SignUpState extends State<SignUp> {
                                 fontFamily: 'WorkSansSemiBold', fontSize: 16.0),
                             suffixIcon: GestureDetector(
                               onTap: _toggleSignupConfirm,
-                              child: Icon(
+                              child:Icon(
                                 _obscureTextConfirmPassword
                                     ? FontAwesomeIcons.eye
                                     : FontAwesomeIcons.eyeSlash,
@@ -196,7 +294,7 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                           onSubmitted: (_) {
-                            _toggleSignUpButton();
+                            _registerUser();
                           },
                           textInputAction: TextInputAction.go,
                         ),
@@ -206,7 +304,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(top: 340.0),
+                margin: const EdgeInsets.only(top: 445.0),
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                   color: Color(0xFF1f305e), // Color sólido #1f305e
@@ -226,7 +324,7 @@ class _SignUpState extends State<SignUp> {
                           fontFamily: 'WorkSansBold'),
                     ),
                   ),
-                  onPressed: () => _toggleSignUpButton(),
+                  onPressed: () => _registerUser(),
                 ),
               )
             ],
@@ -234,9 +332,6 @@ class _SignUpState extends State<SignUp> {
         ],
       ),
     );
-  }
-
-  void _toggleSignUpButton() {
   }
 
   void _toggleSignup() {

@@ -8,6 +8,7 @@ class ProfileListItem extends StatelessWidget {
   final String text;
   final bool hasNavigation;
 
+  // ignore: use_super_parameters
   const ProfileListItem({
     Key? key,
     required this.icon,
@@ -29,22 +30,27 @@ class ProfileListItem extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(kSpacingUnit.w * 3),
+        // ignore: deprecated_member_use
         color: Theme.of(context).backgroundColor,
       ),
       child: Row(
         children: <Widget>[
           Icon(
+            // ignore: unnecessary_this
             this.icon,
             size: kSpacingUnit.w * 2.5,
           ),
           SizedBox(width: kSpacingUnit.w * 1.5),
           Text(
+            // ignore: unnecessary_this
             this.text,
             style: kTitleTextStyle.copyWith(
               fontWeight: FontWeight.w500,
             ),
           ),
+          // ignore: prefer_const_constructors
           Spacer(),
+          // ignore: unnecessary_this
           if (this.hasNavigation)
             Icon(
               LineAwesomeIcons.angle_right,

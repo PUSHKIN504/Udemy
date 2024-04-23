@@ -7,6 +7,7 @@ class DisplayImage extends StatelessWidget {
   final VoidCallback onPressed;
 
   // Constructor
+  // ignore: use_super_parameters
   const DisplayImage({
     Key? key,
     required this.imagePath,
@@ -15,12 +16,14 @@ class DisplayImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: prefer_const_constructors
     final color = Color.fromRGBO(64, 105, 225, 1);
 
     return Center(
         child: Stack(children: [
       buildImage(color),
       Positioned(
+        // ignore: sort_child_properties_last
         child: buildEditIcon(color),
         right: 4,
         top: 10,
