@@ -17,6 +17,6 @@ List<Course> courses = [
     instructor: "Madian Reyes",
     completedPercentage: .75,
     name: "MS Word 2019",
-    thumbnail: "assets/images/icons/flutter.jpg",
+    thumbnail: "assets/images/icons/ms_word.png",
   ),
 ];

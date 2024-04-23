@@ -45,7 +45,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     children: [
                       Align(
                         child: Text(
-                          "Flutter",
+                          "Java",
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                       ),

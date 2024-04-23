@@ -46,7 +46,7 @@ class _DetailsScreenDgState extends State<DetailsScreenDg> {
                     children: [
                       Align(
                         child: Text(
-                          "Flutter",
+                          "Photoshop",
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                       ),

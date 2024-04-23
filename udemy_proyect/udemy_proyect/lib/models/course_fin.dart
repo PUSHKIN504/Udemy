@@ -17,6 +17,6 @@ List<Course> courses = [
     instructor: "Noemy Reyes",
     completedPercentage: .75,
     name: "Curso de Finanzas",
-    thumbnail: "assets/images/icons/flutter.jpg",
+    thumbnail: "assets/images/icons/fin.jpg",
   ),
 ];

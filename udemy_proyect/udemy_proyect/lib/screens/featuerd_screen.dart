@@ -1,19 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:udemy_proyect/constants/color.dart';
 import 'package:udemy_proyect/constants/size.dart';
 import 'package:udemy_proyect/models/category.dart';
 import 'package:udemy_proyect/screens/course_screen.dart';
-// import 'package:udemy_proyect/screens/details_screen.dart';
-// import 'package:udemy_proyect/widgets/circle_button.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
+import 'package:udemy_proyect/screens/course_screen_dg.dart';
+import 'package:udemy_proyect/screens/course_screen_fin.dart';
+import 'package:udemy_proyect/screens/course_screen_ofi.dart';
 import '../widgets/search_testfield.dart';
+// Definir un mapa que asocie cada categoría con su pantalla correspondiente
+final Map<String, WidgetBuilder> categoryScreenMap = {
+  'Programacion': (context) => CourseScreen(),
+  'Ofimatica': (context) => CourseScreenOfi(),
+  'Diseño grafico': (context) => CourseScreenDg(),
+  'Finanzas': (context) => CourseScreenFin(),
+};
 
 class FeaturedScreen extends StatefulWidget {
-  const FeaturedScreen({super.key});
+  const FeaturedScreen({Key? key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _FeaturedScreenState createState() => _FeaturedScreenState();
 }
 
@@ -35,7 +41,7 @@ class _FeaturedScreenState extends State<FeaturedScreen> {
 }
 
 class Body extends StatelessWidget {
-  const Body({super.key});
+  const Body({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -90,19 +96,29 @@ class Body extends StatelessWidget {
 class CategoryCard extends StatelessWidget {
   final Category category;
   const CategoryCard({
-    super.key,
+    Key? key,
     required this.category,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const CourseScreen(),
-        ),
-      ),
+      onTap: () {
+        // Obtener el constructor de la pantalla correspondiente a la categoría seleccionada
+        WidgetBuilder? screenBuilder = categoryScreenMap[category.name];
+        if (screenBuilder != null) {
+          // Abrir la pantalla correspondiente
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: screenBuilder,
+            ),
+          );
+        } else {
+          // Manejar caso donde no hay constructor para la categoría
+          // Puedes mostrar un mensaje de error o simplemente no hacer nada
+        }
+      },
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -143,8 +159,8 @@ class CategoryCard extends StatelessWidget {
 
 class AppBar extends StatelessWidget {
   const AppBar({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -46,7 +46,7 @@ class _DetailsScreenOfiState extends State<DetailsScreenOfi> {
                     children: [
                       Align(
                         child: Text(
-                          "Flutter",
+                          "MS Word 2019",
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                       ),

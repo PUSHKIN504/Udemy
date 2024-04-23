@@ -17,6 +17,6 @@ List<Course> courses = [
     instructor: "Alejandra Solis",
     completedPercentage: .75,
     name: "Photoshop",
-    thumbnail: "assets/images/icons/flutter.jpg",
+    thumbnail: "assets/images/icons/photoshop.png",
   ),
 ];
