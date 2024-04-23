@@ -22,10 +22,12 @@ class User {
     String? about,
   }) =>
       User(
+        // ignore: unnecessary_this
         image: imagePath ?? this.image,
         name: name ?? this.name,
         email: email ?? this.email,
         phone: phone ?? this.phone,
+        // ignore: unnecessary_this
         aboutMeDescription: about ?? this.aboutMeDescription,
       );
 

@@ -10,16 +10,22 @@ import 'package:udemy_proyect/screens/course_screen_ofi.dart';
 import '../widgets/search_testfield.dart';
 // Definir un mapa que asocie cada categoría con su pantalla correspondiente
 final Map<String, WidgetBuilder> categoryScreenMap = {
+  // ignore: prefer_const_constructors
   'Programacion': (context) => CourseScreen(),
+  // ignore: prefer_const_constructors
   'Ofimatica': (context) => CourseScreenOfi(),
+  // ignore: prefer_const_constructors
   'Diseño grafico': (context) => CourseScreenDg(),
+  // ignore: prefer_const_constructors
   'Finanzas': (context) => CourseScreenFin(),
 };
 
 class FeaturedScreen extends StatefulWidget {
+  // ignore: use_key_in_widget_constructors
   const FeaturedScreen({Key? key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _FeaturedScreenState createState() => _FeaturedScreenState();
 }
 
@@ -41,6 +47,7 @@ class _FeaturedScreenState extends State<FeaturedScreen> {
 }
 
 class Body extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   const Body({Key? key});
 
   @override
@@ -95,6 +102,7 @@ class Body extends StatelessWidget {
 
 class CategoryCard extends StatelessWidget {
   final Category category;
+  // ignore: use_super_parameters
   const CategoryCard({
     Key? key,
     required this.category,
@@ -158,6 +166,7 @@ class CategoryCard extends StatelessWidget {
 }
 
 class AppBar extends StatelessWidget {
+  // ignore: use_super_parameters
   const AppBar({
     Key? key,
   }) : super(key: key);

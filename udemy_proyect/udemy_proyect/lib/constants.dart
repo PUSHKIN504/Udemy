@@ -28,6 +28,7 @@ final kDarkTheme = ThemeData(
   fontFamily: 'SFProText',
   primaryColor: kDarkPrimaryColor,
   canvasColor: kDarkPrimaryColor,
+  // ignore: deprecated_member_use
   backgroundColor: kDarkSecondaryColor,
   hintColor: kAccentColor,
   iconTheme: ThemeData.dark().iconTheme.copyWith(
@@ -45,6 +46,7 @@ final kLightTheme = ThemeData(
   fontFamily: 'SFProText',
   primaryColor: kLightPrimaryColor,
   canvasColor: kLightPrimaryColor,
+  // ignore: deprecated_member_use
   backgroundColor: kLightSecondaryColor,
   hintColor: kAccentColor,
   iconTheme: ThemeData.light().iconTheme.copyWith(
