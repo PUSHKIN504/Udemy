@@ -7,6 +7,7 @@ class ProfileWidget extends StatelessWidget {
   final bool isEdit;
   final VoidCallback onClicked;
 
+  // ignore: use_super_parameters
   const ProfileWidget({
     Key? key,
     required this.imagePath,

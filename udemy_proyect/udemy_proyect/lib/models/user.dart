@@ -14,37 +14,37 @@ class User {
   });
 
 
-  User copy({
-    String? imagePath,
-    String? name,
-    String? phone,
-    String? email,
-    String? about,
-  }) =>
-      User(
-        // ignore: unnecessary_this
-        image: imagePath ?? this.image,
-        name: name ?? this.name,
-        email: email ?? this.email,
-        phone: phone ?? this.phone,
-        // ignore: unnecessary_this
-        aboutMeDescription: about ?? this.aboutMeDescription,
-      );
+  // User copy({
+  //   String? imagePath,
+  //   String? name,
+  //   String? phone,
+  //   String? email,
+  //   String? about,
+  // }) =>
+  //     User(
+  //       // ignore: unnecessary_this
+  //       image: imagePath ?? this.image,
+  //       name: name ?? this.name,
+  //       email: email ?? this.email,
+  //       phone: phone ?? this.phone,
+  //       // ignore: unnecessary_this
+  //       aboutMeDescription: about ?? this.aboutMeDescription,
+  //     );
 
-  static User fromJson(Map<String, dynamic> json) => User(
-        image: json['imagePath'],
-        name: json['name'],
-        email: json['email'],
-        aboutMeDescription: json['about'],
-        phone: json['phone'],
-      );
+  // static User fromJson(Map<String, dynamic> json) => User(
+  //       image: json['imagePath'],
+  //       name: json['name'],
+  //       email: json['email'],
+  //       aboutMeDescription: json['about'],
+  //       phone: json['phone'],
+  //     );
 
-  Map<String, dynamic> toJson() => {
-        'imagePath': image,
-        'name': name,
-        'email': email,
-        'about': aboutMeDescription,
-        'phone': phone,
-      };
+  // Map<String, dynamic> toJson() => {
+  //       'imagePath': image,
+  //       'name': name,
+  //       'email': email,
+  //       'about': aboutMeDescription,
+  //       'phone': phone,
+  //     };
 
 }
