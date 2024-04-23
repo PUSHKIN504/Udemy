@@ -2,10 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:udemy_proyect/constants/color.dart';
 import 'package:udemy_proyect/constants/icons.dart';
 import 'package:udemy_proyect/constants/size.dart';
+import 'package:udemy_proyect/screens/dashboard_screen.dart';
 import 'package:udemy_proyect/screens/featuerd_screen.dart';
 import 'package:udemy_proyect/screens/mis_curso.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:udemy_proyect/screens/user_screen.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});
@@ -40,8 +42,8 @@ class _BaseScreenState extends State<BaseScreen> {
   static const List<Widget> _widgetOptions = <Widget>[
     FeaturedScreen(),
     MisCursosScreen(),
-    FeaturedScreen(),
-    FeaturedScreen(),
+    user_screen(),
+    DashBoardScreen(),
   ];
   @override
   Widget build(BuildContext context) {  
@@ -79,15 +81,25 @@ class _BaseScreenState extends State<BaseScreen> {
             ),
             BottomNavigationBarItem(
               activeIcon: Image.asset(
-                icSetting,
+                icUser,
                 height: kBottomNavigationBarItemSize,
               ),
               icon: Image.asset(
-                icSettingOutlined,
+                icUserOulined,
                 height: kBottomNavigationBarItemSize,
               ),
               label: "Configuracion",
-            ),
+            ), BottomNavigationBarItem(
+              activeIcon: Image.asset(
+                icDasboard,
+                height: kBottomNavigationBarItemSize,
+              ),
+              icon: Image.asset(
+                icDasboardOulined,
+                height: kBottomNavigationBarItemSize,
+              ),
+              label: "Dashboard's",
+            )
           ],
           currentIndex: _selectedIndex,
           onTap: (int index) {

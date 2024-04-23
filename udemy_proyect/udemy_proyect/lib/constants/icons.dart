@@ -12,3 +12,7 @@ const icDone = '$_path/done.png';
 const icLock = '$_path/lock.png';
 const icPlayNext = '$_path/play_next.png';
 const icPause = '$_path/pause.png';
+const icDasboard = '$_path/dash.png';
+const icDasboardOulined= '$_path/dash_outlined.png';
+const icUser= '$_path/user.png';
+const icUserOulined= '$_path/user_outlined.png';
