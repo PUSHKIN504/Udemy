@@ -17,24 +17,18 @@ List<Lesson> lessonList = [
     duration: '11 min 20 sec',
     isCompleted: true,
     isPlaying: true,
-    name: "Principios de la programacion",
+    name: "Instalacion del paquete de MS Office 2020.",
   ),
   Lesson(
     duration: '10 min 11 sec',
     isCompleted: false,
     isPlaying: false,
-    name: "Arreglos y Matrices en Java",
+    name: "Principios e introduccion a MS Word.",
   ),
   Lesson(
     duration: '7 min',
     isCompleted: false,
     isPlaying: false,
-    name: "POO en Java",
-  ),
-  Lesson(
-    duration: '5 min',
-    isCompleted: false,
-    isPlaying: false,
-    name: "MVC en Java.",
+    name: "Normas APA.",
   ),
 ];

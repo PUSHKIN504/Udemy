@@ -11,11 +11,12 @@ class Course {
     required this.thumbnail,
   });
 }
+
 List<Course> courses = [
   Course(
     instructor: "Madian Reyes",
-    completedPercentage: .60,
-    name: "Java",
-    thumbnail: "assets/images/icons/java.jpg",
+    completedPercentage: .75,
+    name: "MS Word 2019",
+    thumbnail: "assets/images/icons/ms_word.png",
   ),
 ];

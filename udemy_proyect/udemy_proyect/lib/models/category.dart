@@ -13,22 +13,22 @@ class Category {
 List<Category> categoryList = [
   Category(
     name: 'Programacion',
-    noOfCourses: 55,
+    noOfCourses: 1,
     thumbnail: 'assets/images/icons/laptop.jpg',
   ),
   Category(
-    name: 'Informatica',
-    noOfCourses: 20,
+    name: 'Ofimatica',
+    noOfCourses: 1,
     thumbnail: 'assets/images/icons/accounting.jpg',
   ),
   Category(
     name: 'Diseño grafico',
-    noOfCourses: 16,
+    noOfCourses: 1,
     thumbnail: 'assets/images/icons/photography.jpg',
   ),
   Category(
     name: 'Finanzas',
-    noOfCourses: 25,
+    noOfCourses: 1,
     thumbnail: 'assets/images/icons/design.jpg',
   ),
 ];

@@ -1,25 +1,26 @@
-import 'package:education_app/constants/color.dart';
-import 'package:education_app/constants/icons.dart';
-import 'package:education_app/models/lesson.dart';
-import 'package:education_app/widgets/custom_video_player.dart';
+import 'package:udemy_proyect/constants/color.dart';
+import 'package:udemy_proyect/constants/icons.dart';
+import 'package:udemy_proyect/models/lesson_dg.dart';
+import 'package:udemy_proyect/widgets/custom_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:video_player/video_player.dart';
+import '../widgets/lesson_card_dg.dart';
 
-import '../widgets/lesson_card.dart';
-
-class DetailsScreen extends StatefulWidget {
+class DetailsScreenDg extends StatefulWidget {
   final String title;
-  const DetailsScreen({
+  // ignore: use_super_parameters
+  const DetailsScreenDg({
     Key? key,
     required this.title,
   }) : super(key: key);
 
   @override
-  _DetailsScreenState createState() => _DetailsScreenState();
+  // ignore: library_private_types_in_public_api
+  _DetailsScreenDgState createState() => _DetailsScreenDgState();
 }
 
-class _DetailsScreenState extends State<DetailsScreen> {
+class _DetailsScreenDgState extends State<DetailsScreenDg> {
   int _selectedTag = 0;
 
   void changeTab(int index) {
@@ -45,17 +46,17 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     children: [
                       Align(
                         child: Text(
-                          "Java",
+                          "Photoshop",
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                       ),
                       Positioned(
                         left: 0,
                         child: CustomIconButton(
-                          child: const Icon(Icons.arrow_back),
                           height: 35,
                           width: 35,
                           onTap: () => Navigator.pop(context),
+                          child: const Icon(Icons.arrow_back),
                         ),
                       ),
                     ],
@@ -157,7 +158,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
 }
 
 class PlayList extends StatelessWidget {
-  const PlayList({Key? key}) : super(key: key);
+  const PlayList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +181,7 @@ class PlayList extends StatelessWidget {
 }
 
 class Description extends StatelessWidget {
-  const Description({Key? key}) : super(key: key);
+  const Description({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -195,8 +196,7 @@ class Description extends StatelessWidget {
 class CustomTabView extends StatefulWidget {
   final Function(int) changeTab;
   final int index;
-  const CustomTabView({Key? key, required this.changeTab, required this.index})
-      : super(key: key);
+  const CustomTabView({super.key, required this.changeTab, required this.index});
 
   @override
   State<CustomTabView> createState() => _CustomTabViewState();
@@ -248,9 +248,10 @@ class _CustomTabViewState extends State<CustomTabView> {
 }
 
 class EnrollBottomSheet extends StatefulWidget {
-  const EnrollBottomSheet({Key? key}) : super(key: key);
+  const EnrollBottomSheet({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _EnrollBottomSheetState createState() => _EnrollBottomSheetState();
 }
 
@@ -305,22 +306,17 @@ class CustomIconButton extends StatelessWidget {
   final VoidCallback onTap;
 
   const CustomIconButton({
-    Key? key,
+    super.key,
     required this.child,
     required this.height,
     required this.width,
     this.color = Colors.white,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Ink(
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        child: Center(child: child),
-        onTap: onTap,
-      ),
       height: height,
       width: width,
       decoration: BoxDecoration(
@@ -333,6 +329,11 @@ class CustomIconButton extends StatelessWidget {
             spreadRadius: .05,
           ), //BoxShadow
         ],
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: onTap,
+        child: Center(child: child),
       ),
     );
   }
