@@ -266,7 +266,6 @@ class _SignUpState extends State<SignUp> {
                           height: 1.0,
                           color: Colors.grey[400],
                         ),
-                       
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0),
                           child: DropdownButtonFormField<String>(

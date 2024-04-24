@@ -1,85 +1,30 @@
-// import 'package:udemy_proyect/constants/color.dart';
-import 'package:udemy_proyect/constants/size.dart';
-import 'package:udemy_proyect/models/category.dart';
-import 'package:udemy_proyect/screens/course_screen.dart';
-// import 'package:udemy_proyect/screens/details_screen.dart';
-// import 'package:udemy_proyect/widgets/circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-// import '../widgets/search_testfield.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class DashBoardScreen extends StatefulWidget {
-  const DashBoardScreen({super.key});
+  const DashBoardScreen({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _DashBoardScreenState createState() => _DashBoardScreenState();
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
   @override
   Widget build(BuildContext context) {
-    return const AnnotatedRegion<SystemUiOverlayStyle>(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
         body: Column(
           children: [
             AppBar(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class CategoryCard extends StatelessWidget {
-  final Category category;
-  const CategoryCard({
-    super.key,
-    required this.category,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const CourseScreen(),
-        ),
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(.1),
-              blurRadius: 4.0,
-              spreadRadius: .05,
-            ), //BoxShadow
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: Image.asset(
-                category.thumbnail,
-                height: kCategoryCardImageSize,
+            Card(
+              margin: const EdgeInsets.all(20.0),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: BarChartSample1(),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(category.name),
-            Text(
-              "${category.noOfCourses.toString()} courses",
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
           ],
         ),
       ),
@@ -87,10 +32,10 @@ class CategoryCard extends StatelessWidget {
   }
 }
 
+
+
 class AppBar extends StatelessWidget {
-  const AppBar({
-    super.key,
-  });
+  const AppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -120,9 +65,19 @@ class AppBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Graficos",
-                style: Theme.of(context).textTheme.titleLarge,
-              ),             
+                "Gráficos",
+                style: Theme.of(context).textTheme.headline6!.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                ),
+              ),
             ],
           ),
           const SizedBox(
@@ -132,4 +87,135 @@ class AppBar extends StatelessWidget {
       ),
     );
   }
+}
+
+class BarChartSample1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 200, // Altura específica para el gráfico
+      child: BarChart(
+        BarChartData(
+          alignment: BarChartAlignment.spaceAround,
+          maxY: 20,
+          titlesData: FlTitlesData(
+            leftTitles: SideTitles(
+              showTitles: true,
+              margin: 10,
+              reservedSize: 30,
+            ),
+            bottomTitles: SideTitles(
+              showTitles: true,
+              margin: 10,
+              reservedSize: 30,
+              rotateAngle: 45,
+              getTitles: (value) {
+                switch (value.toInt()) {
+                  case 0:
+                    return 'Jan';
+                  case 1:
+                    return 'Feb';
+                  case 2:
+                    return 'Mar';
+                  case 3:
+                    return 'Apr';
+                  case 4:
+                    return 'May';
+                  case 5:
+                    return 'Jun';
+                  default:
+                    return '';
+                }
+              },
+            ),
+          ),
+          barGroups: [
+            BarChartGroupData(
+              x: 0,
+              barRods: [
+                BarChartRodData(
+                  y: 10,
+                  colors: [Colors.blue],
+                ),
+              ],
+              showingTooltipIndicators: [0],
+            ),
+            BarChartGroupData(
+              x: 1,
+              barRods: [
+                BarChartRodData(
+                  y: 15,
+                  colors: [Colors.blue],
+                ),
+              ],
+              showingTooltipIndicators: [0],
+            ),
+            BarChartGroupData(
+              x: 2,
+              barRods: [
+                BarChartRodData(
+                  y: 12,
+                  colors: [Colors.blue],
+                ),
+              ],
+              showingTooltipIndicators: [0],
+            ),
+            BarChartGroupData(
+              x: 3,
+              barRods: [
+                BarChartRodData(
+                  y: 18,
+                  colors: [Colors.blue],
+                ),
+              ],
+              showingTooltipIndicators: [0],
+            ),
+            BarChartGroupData(
+              x: 4,
+              barRods: [
+                BarChartRodData(
+                  y: 17,
+                  colors: [Colors.blue],
+                ),
+              ],
+              showingTooltipIndicators: [0],
+            ),
+            BarChartGroupData(
+              x: 5,
+              barRods: [
+                BarChartRodData(
+                  y: 14,
+                  colors: [Colors.blue],
+                ),
+              ],
+              showingTooltipIndicators: [0],
+            ),
+          ],
+          borderData: FlBorderData(
+            show: false,
+          ),
+          barTouchData: BarTouchData(
+            touchTooltipData: BarTouchTooltipData(
+              tooltipBgColor: Colors.blueGrey,
+              getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                return BarTooltipItem(
+                  rod.y.round().toString(),
+                  TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: DashBoardScreen(),
+  ));
 }
