@@ -1,16 +1,27 @@
-// import 'package:udemy_proyect/constants/color.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:udemy_proyect/constants/color.dart';
 import 'package:udemy_proyect/constants/size.dart';
 import 'package:udemy_proyect/models/category.dart';
 import 'package:udemy_proyect/screens/course_screen.dart';
-// import 'package:udemy_proyect/screens/details_screen.dart';
-// import 'package:udemy_proyect/widgets/circle_button.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:udemy_proyect/screens/course_screen_dg.dart';
+import 'package:udemy_proyect/screens/course_screen_fin.dart';
+import 'package:udemy_proyect/screens/course_screen_ofi.dart';
 
-// import '../widgets/search_testfield.dart';
+final Map<String, WidgetBuilder> categoryScreenMap = {
+  // ignore: prefer_const_constructors
+  'Programacion': (context) => CourseScreen(),
+  // ignore: prefer_const_constructors
+  'Ofimatica': (context) => CourseScreenOfi(),
+  // ignore: prefer_const_constructors
+  'Diseño grafico': (context) => CourseScreenDg(),
+  // ignore: prefer_const_constructors
+  'Finanzas': (context) => CourseScreenFin(),
+};
 
 class MisCursosScreen extends StatefulWidget {
-  const MisCursosScreen({super.key});
+  // ignore: use_key_in_widget_constructors
+  const MisCursosScreen({Key? key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -26,6 +37,7 @@ class _MisCursosScreenState extends State<MisCursosScreen> {
         body: Column(
           children: [
             AppBar(),
+            Body(),
           ],
         ),
       ),
@@ -33,22 +45,87 @@ class _MisCursosScreenState extends State<MisCursosScreen> {
   }
 }
 
+class Body extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
+  const Body({Key? key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  "",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: kPrimaryColor),
+                ),
+              )
+            ],
+          ),
+        ),
+        GridView.builder(
+          shrinkWrap: true,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 8,
+          ),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 0.8,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 24,
+          ),
+          itemBuilder: (context, index) {
+            return CategoryCard(
+              category: categoryList[index],
+            );
+          },
+          itemCount: categoryList.length,
+        ),
+      ],
+    );
+  }
+}
+
 class CategoryCard extends StatelessWidget {
   final Category category;
+  // ignore: use_super_parameters
   const CategoryCard({
-    super.key,
+    Key? key,
     required this.category,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const CourseScreen(),
-        ),
-      ),
+      onTap: () {
+        // Obtener el constructor de la pantalla correspondiente a la categoría seleccionada
+        WidgetBuilder? screenBuilder = categoryScreenMap[category.name];
+        if (screenBuilder != null) {
+          // Abrir la pantalla correspondiente
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: screenBuilder,
+            ),
+          );
+        } else {
+          // Manejar caso donde no hay constructor para la categoría
+          // Puedes mostrar un mensaje de error o simplemente no hacer nada
+        }
+      },
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -77,7 +154,7 @@ class CategoryCard extends StatelessWidget {
             ),
             Text(category.name),
             Text(
-              "${category.noOfCourses.toString()} courses",
+              "${category.noOfCourses.toString()} cursos",
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
@@ -88,9 +165,10 @@ class CategoryCard extends StatelessWidget {
 }
 
 class AppBar extends StatelessWidget {
+  // ignore: use_super_parameters
   const AppBar({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +198,7 @@ class AppBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Mis Cursos",
+                "Mis Cursos,\n",
                 style: Theme.of(context).textTheme.titleLarge,
               ),             
             ],

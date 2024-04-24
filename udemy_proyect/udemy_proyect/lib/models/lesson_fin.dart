@@ -37,10 +37,4 @@ List<Lesson> lessonList = [
     isPlaying: false,
     name: "Herramienta Lazo.",
   ),
-  Lesson(
-    duration: '5 min',
-    isCompleted: false,
-    isPlaying: false,
-    name: "Restauracion de fotos",
-  ),
 ];

@@ -70,7 +70,7 @@ class _DetailsScreenDgState extends State<DetailsScreenDg> {
                   height: 15,
                 ),
                 const Text(
-                  "Futter Novice to Ninja",
+                  "Instalacion de Adobe Photoshop",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -80,7 +80,7 @@ class _DetailsScreenDgState extends State<DetailsScreenDg> {
                   height: 3,
                 ),
                 const Text(
-                  "Created by DevWheels",
+                  "por: Alejandra Solis",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
@@ -111,7 +111,7 @@ class _DetailsScreenDgState extends State<DetailsScreenDg> {
                       color: Colors.grey,
                     ),
                     const Text(
-                      " 72 Hours",
+                      " 5 Horas",
                       style: TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.w500,
@@ -120,7 +120,7 @@ class _DetailsScreenDgState extends State<DetailsScreenDg> {
                     ),
                     const Spacer(),
                     const Text(
-                      " \$40",
+                      " \$10",
                       style: TextStyle(
                         color: kPrimaryColor,
                         fontWeight: FontWeight.w700,
@@ -188,7 +188,7 @@ class Description extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.only(top: 20.0),
       child: Text(
-          "Build Flutter iOS and Android Apps with a Single Codebase: Learn Google's Flutter Mobile Development Framework & Dart"),
+          "Curso para una introduccion basica a Adobe Photoshop"),
     );
   }
 }
@@ -203,7 +203,7 @@ class CustomTabView extends StatefulWidget {
 }
 
 class _CustomTabViewState extends State<CustomTabView> {
-  final List<String> _tags = ["Playlist (22)", "Description"];
+  final List<String> _tags = ["Playlist (5)", "Descripcion"];
 
   Widget _buildTags(int index) {
     return GestureDetector(
@@ -264,16 +264,6 @@ class _EnrollBottomSheetState extends State<EnrollBottomSheet> {
       ),
       child: Row(
         children: [
-          CustomIconButton(
-            onTap: () {},
-            height: 45,
-            width: 45,
-            child: const Icon(
-              Icons.favorite,
-              color: kPrimaryLight,
-              size: 30,
-            ),
-          ),
           const SizedBox(
             width: 20,
           ),
@@ -284,7 +274,7 @@ class _EnrollBottomSheetState extends State<EnrollBottomSheet> {
               height: 45,
               width: 45,
               child: const Text(
-                "Enroll Now",
+                "Comprar",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
