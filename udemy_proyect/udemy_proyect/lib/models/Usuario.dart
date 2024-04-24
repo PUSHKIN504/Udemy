@@ -27,6 +27,7 @@ class UsuarioViewModel {
   String? usu_Telefono;
   // ignore: non_constant_identifier_names
   String? Mun_Id;
+  String? Mun_Descripcion;
   // ignore: non_constant_identifier_names
   bool? usu_Estado;
   // ignore: non_constant_identifier_names
@@ -64,6 +65,7 @@ class UsuarioViewModel {
        // ignore: non_constant_identifier_names
        this.usu_Apellido,
        // ignore: non_constant_identifier_names
+       this.Mun_Descripcion,
       //  this.usu_FechaNacimiento,
        // ignore: non_constant_identifier_names
        this.usu_Sexo,
@@ -101,6 +103,7 @@ class UsuarioViewModel {
       : usu_Id = json['usu_Id'],
         usu_Usuario = json['usu_Usuario'],
         usu_Contrasena = json['usu_Contrasena'],
+        Mun_Descripcion=json['mun_Descripcion'],
         usu_Nombre = json['usu_Nombre'],
         usu_Apellido = json['usu_Apellido'],
         usu_Sexo = json['usu_Sexo'],
@@ -134,6 +137,7 @@ class UsuarioViewModel {
         'usu_Direccion': usu_Direccion,
         'usu_Telefono': usu_Telefono,
         'Mun_Id': Mun_Id,
+        'mun_Descripcion':Mun_Descripcion,
         // 'usu_Admin': usu_Admin,
         // 'rol_Id': rol_Id,
         'usua_Estado': usu_Estado,
