@@ -70,7 +70,7 @@ class _DetailsScreenOfiState extends State<DetailsScreenOfi> {
                   height: 15,
                 ),
                 const Text(
-                  "Futter Novice to Ninja",
+                  "Instalacion del paquete de MS Office 2020.",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -80,7 +80,7 @@ class _DetailsScreenOfiState extends State<DetailsScreenOfi> {
                   height: 3,
                 ),
                 const Text(
-                  "Created by DevWheels",
+                  "Por: Madian Reyes",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
@@ -111,7 +111,7 @@ class _DetailsScreenOfiState extends State<DetailsScreenOfi> {
                       color: Colors.grey,
                     ),
                     const Text(
-                      " 72 Hours",
+                      " 4 Horas",
                       style: TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.w500,
@@ -120,7 +120,7 @@ class _DetailsScreenOfiState extends State<DetailsScreenOfi> {
                     ),
                     const Spacer(),
                     const Text(
-                      " \$40",
+                      " \$2",
                       style: TextStyle(
                         color: kPrimaryColor,
                         fontWeight: FontWeight.w700,
@@ -203,7 +203,7 @@ class CustomTabView extends StatefulWidget {
 }
 
 class _CustomTabViewState extends State<CustomTabView> {
-  final List<String> _tags = ["Playlist (22)", "Description"];
+  final List<String> _tags = ["Playlist (3)", "Descripcion"];
 
   Widget _buildTags(int index) {
     return GestureDetector(
@@ -284,7 +284,7 @@ class _EnrollBottomSheetState extends State<EnrollBottomSheet> {
               height: 45,
               width: 45,
               child: const Text(
-                "Enroll Now",
+                "Comprar",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
