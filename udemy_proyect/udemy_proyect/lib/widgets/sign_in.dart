@@ -248,6 +248,8 @@ class _SignInState extends State<SignIn> {
       final response = await http.get(Uri.parse(apiUrl));
       final res = jsonDecode(response.body);
       if (res['data'].length == 1) {
+        final int id = res[0]['usu_Id'];
+        print(id.toString());
         // ignore: avoid_print
         print('credenciales correctas');
         // ignore: unused_local_variable

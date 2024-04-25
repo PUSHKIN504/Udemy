@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:udemy_proyect/models/user.dart';
 import 'package:udemy_proyect/screens/edit_profile_page.dart';
+import 'package:udemy_proyect/screens/list_screen.dart';
 import 'package:udemy_proyect/utils/user_preferences.dart';
 import 'package:udemy_proyect/widgets/appbar_widget.dart';
 import 'package:udemy_proyect/widgets/button_widget.dart';
@@ -46,7 +47,11 @@ class _user_screenState extends State<user_screen> {
                 ));
               }),
               SizedBox(width: 16),
-              buildUpgradeButton('Listado', () {}),
+              buildUpgradeButton('Listado', () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => TablaUsuarios(), // Puedes ajustar el nombre de la pantalla según corresponda
+                ));
+              }),
             ],
           ),
           const SizedBox(height: 24),

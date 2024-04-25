@@ -17,7 +17,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
 
   @override
   void initState() {
-    super.initState();
+    super.initState();  
     // ignore: deprecated_member_use
     _controller = VideoPlayerController.network(
       'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
@@ -72,7 +72,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {   
     return AspectRatio(
       aspectRatio: _controller.value.aspectRatio,
       child: Stack(
