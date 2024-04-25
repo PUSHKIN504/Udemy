@@ -1,12 +1,15 @@
-import 'package:udemy_proyect/screens/app_colors.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:udemy_proyect/screens/app_colors.dart';
+import 'package:udemy_proyect/screens/login_page.dart';
 import '../src/localization/flutter_credit_card.dart';
 
 void main() => runApp(const MySample());
 
 class MySample extends StatefulWidget {
-  const MySample({super.key});
+  const MySample({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => MySampleState();
@@ -41,17 +44,14 @@ class MySampleState extends State<MySample> {
       themeMode: isLightTheme ? ThemeMode.light : ThemeMode.dark,
       theme: ThemeData(
         textTheme: const TextTheme(
-          // Text style for text fields' input.
           titleMedium: TextStyle(color: Colors.black, fontSize: 18),
         ),
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.light,
           seedColor: Colors.white,
           background: Colors.black,
-          // Defines colors like cursor color of the text fields.
           primary: Colors.black,
         ),
-        // Decoration theme for the text fields.
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: const TextStyle(color: Colors.black),
           labelStyle: const TextStyle(color: Colors.black),
@@ -61,17 +61,14 @@ class MySampleState extends State<MySample> {
       ),
       darkTheme: ThemeData(
         textTheme: const TextTheme(
-          // Text style for text fields' input.
           titleMedium: TextStyle(color: Colors.white, fontSize: 18),
         ),
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,
           seedColor: Colors.black,
           background: Colors.white,
-          // Defines colors like cursor color of the text fields.
           primary: Colors.white,
         ),
-        // Decoration theme for the text fields.
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: const TextStyle(color: Colors.white),
           labelStyle: const TextStyle(color: Colors.white),
@@ -84,40 +81,16 @@ class MySampleState extends State<MySample> {
         body: Builder(
           builder: (BuildContext context) {
             return Container(
-              // decoration: BoxDecoration(
-              //   image: DecorationImage(
-              //     image: ExactAssetImage(
-              //       isLightTheme ? 'assets/bg-light.png' : 'assets/bg-dark.png',
-              //     ),
-              //     fit: BoxFit.fill,
-              //   ),
-              // ),
               child: SafeArea(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    // IconButton(
-                    //   onPressed: () => setState(() {
-                    //     isLightTheme = !isLightTheme;
-                    //   }),
-                    //   icon: Icon(
-                    //     isLightTheme ? Icons.light_mode : Icons.dark_mode,
-                    //   ),
-                    // ),
                     CreditCardWidget(
-                      // enableFloatingCard: useFloatingAnimation,
-                      // glassmorphismConfig: _getGlassmorphismConfig(),
                       cardNumber: cardNumber,
                       expiryDate: expiryDate,
                       cardHolderName: cardHolderName,
                       cvvCode: cvvCode,
                       bankName: 'Axis Bank',
-                      // frontCardBorder: useGlassMorphism
-                      //     ? null
-                      //     : Border.all(color: Colors.grey),
-                      // backCardBorder: useGlassMorphism
-                      //     ? null
-                      //     : Border.all(color: Colors.grey),
                       showBackView: isCvvFocused,
                       obscureCardNumber: true,
                       obscureCardCvv: true,
@@ -125,8 +98,6 @@ class MySampleState extends State<MySample> {
                       cardBgColor: isLightTheme
                           ? AppColors.cardBgLightColor
                           : AppColors.cardBgColor,
-                      // backgroundImage:
-                          // useBackgroundImage ? '../assets/card_bg.png' : null,
                       isSwipeGestureEnabled: true,
                       onCreditCardWidgetChange:
                           (CreditCardBrand creditCardBrand) {},
@@ -175,70 +146,9 @@ class MySampleState extends State<MySample> {
                               ),
                               onCreditCardModelChange: onCreditCardModelChange,
                             ),
-                            // const SizedBox(height: 20),
-                            // Padding(
-                            //   padding:
-                            //       const EdgeInsets.symmetric(horizontal: 16),
-                            //   child: Row(
-                            //     mainAxisAlignment: MainAxisAlignment.center,
-                            //     children: <Widget>[
-                            //       const Text('Glassmorphism'),
-                            //       const Spacer(),
-                            //       Switch(
-                            //         value: useGlassMorphism,
-                            //         inactiveTrackColor: Colors.grey,
-                            //         activeColor: Colors.white,
-                            //         activeTrackColor: AppColors.colorE5D1B2,
-                            //         onChanged: (bool value) => setState(() {
-                            //           useGlassMorphism = value;
-                            //         }),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
-                            // Padding(
-                            //   padding:
-                            //       const EdgeInsets.symmetric(horizontal: 16),
-                            //   child: Row(
-                            //     mainAxisAlignment: MainAxisAlignment.center,
-                            //     children: <Widget>[
-                            //       const Text('Card Image'),
-                            //       const Spacer(),
-                            //       Switch(
-                            //         value: useBackgroundImage,
-                            //         inactiveTrackColor: Colors.grey,
-                            //         activeColor: Colors.white,
-                            //         activeTrackColor: AppColors.colorE5D1B2,
-                            //         onChanged: (bool value) => setState(() {
-                            //           useBackgroundImage = value;
-                            //         }),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
-                            // Padding(
-                            //   padding:
-                            //       const EdgeInsets.symmetric(horizontal: 16),
-                            //   child: Row(
-                            //     mainAxisAlignment: MainAxisAlignment.center,
-                            //     children: <Widget>[
-                            //       const Text('Floating Card'),
-                            //       const Spacer(),
-                            //       Switch(
-                            //         value: useFloatingAnimation,
-                            //         inactiveTrackColor: Colors.grey,
-                            //         activeColor: Colors.white,
-                            //         activeTrackColor: AppColors.colorE5D1B2,
-                            //         onChanged: (bool value) => setState(() {
-                            //           useFloatingAnimation = value;
-                            //         }),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
                             const SizedBox(height: 20),
                             GestureDetector(
-                              onTap: _onValidate,
+                              onTap: () => _onValidate(context),
                               child: Container(
                                 margin: const EdgeInsets.symmetric(
                                   horizontal: 16,
@@ -266,7 +176,7 @@ class MySampleState extends State<MySample> {
                                     const EdgeInsets.symmetric(vertical: 15),
                                 alignment: Alignment.center,
                                 child: const Text(
-                                  'Validate',
+                                  'Comprar',
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'halter',
@@ -290,29 +200,50 @@ class MySampleState extends State<MySample> {
     );
   }
 
-  void _onValidate() {
+  void _onValidate(BuildContext context) {
     if (formKey.currentState?.validate() ?? false) {
-      print('valid!');
+      _registerUser(context);
     } else {
-      print('invalid!');
+      print('Formulario inválido!');
     }
   }
 
-  Glassmorphism? _getGlassmorphismConfig() {
-    if (!useGlassMorphism) {
-      return null;
-    }
+  Future<void> _registerUser(BuildContext context) async {
+    final Map<String, dynamic> crearCurPUsu = {
+      'usu_Id': 1,
+      'cur_Id': 1,
+    };
 
-    final LinearGradient gradient = LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: <Color>[Colors.grey.withAlpha(50), Colors.grey.withAlpha(50)],
-      stops: const <double>[0.3, 0],
+    final Uri url = Uri.parse('http://UdemyHN.somee.com/API/Usuario/crearCurPUsu');
+
+    final http.Response response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(crearCurPUsu),
     );
 
-    return isLightTheme
-        ? Glassmorphism(blurX: 8.0, blurY: 16.0, gradient: gradient)
-        : Glassmorphism.defaultConfig();
+    if (response.statusCode == 200) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Usuario Creado'),
+          backgroundColor: const Color.fromARGB(255, 54, 231, 5),
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          margin: const EdgeInsets.only(
+            top: 24,
+            right: 20,
+            left: 20,
+          ),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    } else {
+      // Maneja el error aquí
+    }
   }
 
   void onCreditCardModelChange(CreditCardModel creditCardModel) {
