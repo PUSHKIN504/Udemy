@@ -41,8 +41,7 @@ class _BaseScreenState extends State<BaseScreen> {
   }
   static const List<Widget> _widgetOptions = <Widget>[
     FeaturedScreen(),
-    MisCursosScreen(),
-    user_screen(),
+    MisCursosScreen(userCategories: [],),
     DashBoardScreen(),
   ];
   @override
@@ -79,17 +78,7 @@ class _BaseScreenState extends State<BaseScreen> {
               ),
               label: "Mis Cursos",
             ),
-            BottomNavigationBarItem(
-              activeIcon: Image.asset(
-                icUser,
-                height: kBottomNavigationBarItemSize,
-              ),
-              icon: Image.asset(
-                icUserOulined,
-                height: kBottomNavigationBarItemSize,
-              ),
-              label: "Configuracion",
-            ), BottomNavigationBarItem(
+              BottomNavigationBarItem(
               activeIcon: Image.asset(
                 icDasboard,
                 height: kBottomNavigationBarItemSize,

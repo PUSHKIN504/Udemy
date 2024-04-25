@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:udemy_proyect/constants/color.dart';
+import 'package:udemy_proyect/constants/icons.dart';
 import 'package:udemy_proyect/constants/size.dart';
 import 'package:udemy_proyect/models/category.dart';
 import 'package:udemy_proyect/screens/course_screen.dart';
 import 'package:udemy_proyect/screens/course_screen_dg.dart';
 import 'package:udemy_proyect/screens/course_screen_fin.dart';
 import 'package:udemy_proyect/screens/course_screen_ofi.dart';
+import 'package:udemy_proyect/screens/user_screen.dart';
 import '../widgets/search_testfield.dart';
+
 // Definir un mapa que asocie cada categoría con su pantalla correspondiente
 final Map<String, WidgetBuilder> categoryScreenMap = {
   // ignore: prefer_const_constructors
@@ -37,7 +40,7 @@ class _FeaturedScreenState extends State<FeaturedScreen> {
       child: Scaffold(
         body: Column(
           children: [
-            AppBar(),
+            CustomAppBar(),
             Body(),
           ],
         ),
@@ -165,9 +168,8 @@ class CategoryCard extends StatelessWidget {
   }
 }
 
-class AppBar extends StatelessWidget {
-  // ignore: use_super_parameters
-  const AppBar({
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({
     Key? key,
   }) : super(key: key);
 
@@ -201,13 +203,28 @@ class AppBar extends StatelessWidget {
               Text(
                 "Bienvenido,\nNunca es tarde para aprender",
                 style: Theme.of(context).textTheme.titleLarge,
-              ),             
+              ),
+              IconButton(
+                onPressed: () {
+                  // Acción cuando se presiona el botón de configuración
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => user_screen(),
+                    ),
+                  );
+                },
+                icon: Image.asset(
+                  icUserOulined,
+                  height: 40,
+               ),
+              ),
             ],
           ),
           const SizedBox(
             height: 20,
           ),
-          const SearchTextField()
+          const SearchTextField(),
         ],
       ),
     );
