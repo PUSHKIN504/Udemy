@@ -64,8 +64,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);
 
-class AppBar extends StatelessWidget {
-  const AppBar({Key? key}) : super(key: key);
+
 
 
   @override
