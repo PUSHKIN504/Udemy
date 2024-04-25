@@ -7,37 +7,34 @@ import 'package:udemy_proyect/screens/course_screen.dart';
 import 'package:udemy_proyect/screens/course_screen_dg.dart';
 import 'package:udemy_proyect/screens/course_screen_fin.dart';
 import 'package:udemy_proyect/screens/course_screen_ofi.dart';
+import 'package:udemy_proyect/constants/icons.dart';
+import 'package:udemy_proyect/screens/user_screen.dart'; // Importar la pantalla UserScreen
 
 final Map<String, WidgetBuilder> categoryScreenMap = {
-  // ignore: prefer_const_constructors
   'Programacion': (context) => CourseScreen(),
-  // ignore: prefer_const_constructors
   'Ofimatica': (context) => CourseScreenOfi(),
-  // ignore: prefer_const_constructors
   'Diseño grafico': (context) => CourseScreenDg(),
-  // ignore: prefer_const_constructors
   'Finanzas': (context) => CourseScreenFin(),
 };
 
 class MisCursosScreen extends StatefulWidget {
-  // ignore: use_key_in_widget_constructors
-  const MisCursosScreen({Key? key});
+  final List<String> userCategories;
+  const MisCursosScreen({Key? key, required this.userCategories}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _MisCursosScreenState createState() => _MisCursosScreenState();
 }
 
 class _MisCursosScreenState extends State<MisCursosScreen> {
   @override
   Widget build(BuildContext context) {
-    return const AnnotatedRegion<SystemUiOverlayStyle>(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
         body: Column(
           children: [
-            AppBar(),
-            Body(),
+            CustomAppBar(),
+            widget.userCategories.isNotEmpty ? Body(userCategories: widget.userCategories) : NoCursosMessage(),
           ],
         ),
       ),
@@ -46,11 +43,15 @@ class _MisCursosScreenState extends State<MisCursosScreen> {
 }
 
 class Body extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
-  const Body({Key? key});
+  final List<String> userCategories;
+  const Body({Key? key, required this.userCategories}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<Category> filteredCategories = categoryList
+        .where((category) => userCategories.contains(category.name))
+        .toList();
+
     return Column(
       children: [
         Padding(
@@ -89,10 +90,10 @@ class Body extends StatelessWidget {
           ),
           itemBuilder: (context, index) {
             return CategoryCard(
-              category: categoryList[index],
+              category: filteredCategories[index],
             );
           },
-          itemCount: categoryList.length,
+          itemCount: filteredCategories.length,
         ),
       ],
     );
@@ -101,7 +102,6 @@ class Body extends StatelessWidget {
 
 class CategoryCard extends StatelessWidget {
   final Category category;
-  // ignore: use_super_parameters
   const CategoryCard({
     Key? key,
     required this.category,
@@ -111,10 +111,8 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Obtener el constructor de la pantalla correspondiente a la categoría seleccionada
         WidgetBuilder? screenBuilder = categoryScreenMap[category.name];
         if (screenBuilder != null) {
-          // Abrir la pantalla correspondiente
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -123,7 +121,6 @@ class CategoryCard extends StatelessWidget {
           );
         } else {
           // Manejar caso donde no hay constructor para la categoría
-          // Puedes mostrar un mensaje de error o simplemente no hacer nada
         }
       },
       child: Container(
@@ -136,7 +133,7 @@ class CategoryCard extends StatelessWidget {
               color: Colors.black.withOpacity(.1),
               blurRadius: 4.0,
               spreadRadius: .05,
-            ), //BoxShadow
+            ),
           ],
         ),
         child: Column(
@@ -164,9 +161,8 @@ class CategoryCard extends StatelessWidget {
   }
 }
 
-class AppBar extends StatelessWidget {
-  // ignore: use_super_parameters
-  const AppBar({
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({
     Key? key,
   }) : super(key: key);
 
@@ -200,13 +196,44 @@ class AppBar extends StatelessWidget {
               Text(
                 "Mis Cursos,\n",
                 style: Theme.of(context).textTheme.titleLarge,
-              ),             
+              ),
+              IconButton(
+                onPressed: () {
+                  // Navegar a la pantalla UserScreen al hacer clic en el botón de configuración
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => user_screen()),
+                  );
+                },
+                icon: Image.asset(
+                  icUserOulined,
+                  height: 40,
+                ),
+              ),
             ],
           ),
           const SizedBox(
             height: 20,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class NoCursosMessage extends StatelessWidget {
+  const NoCursosMessage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        'No estás suscrito a ningún curso',
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+        textAlign: TextAlign.center,
       ),
     );
   }

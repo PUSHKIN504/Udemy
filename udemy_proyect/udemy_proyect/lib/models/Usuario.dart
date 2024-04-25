@@ -27,6 +27,7 @@ class UsuarioViewModel {
   String? usu_Telefono;
   // ignore: non_constant_identifier_names
   String? Mun_Id;
+  // ignore: non_constant_identifier_names
   String? Mun_Descripcion;
   // ignore: non_constant_identifier_names
   bool? usu_Estado;
@@ -34,6 +35,10 @@ class UsuarioViewModel {
   String? usu_CorreoElectronico;
   // ignore: non_constant_identifier_names
   int? usu_UsuarioCreacion;
+
+  int? cat_Id;
+  int? cur_Id;
+
   // ignore: non_constant_identifier_names
   // bool? usu_Admin;
   // ignore: non_constant_identifier_names
@@ -90,7 +95,11 @@ class UsuarioViewModel {
        // ignore: non_constant_identifier_names
       //  this.usua_FechaModificacion,
        // ignore: non_constant_identifier_names
-       this.usu_CorreoElectronico
+       this.usu_CorreoElectronico,
+       // ignore: non_constant_identifier_names
+       this.cat_Id,
+         // ignore: non_constant_identifier_names
+       this.cur_Id,
        // ignore: non_constant_identifier_names
       //  this.usua_CodigoV,
       //  this.creacion,
@@ -111,7 +120,8 @@ class UsuarioViewModel {
         usu_Direccion = json['usu_Direccion'],
         usu_Telefono = json['usu_Telefono'],
         Mun_Id = json['Mun_Id'],
-     
+        cat_Id = json['cat_Id'],
+        cur_Id = json['cur_Id'],
         usu_Estado = json['usu_Estado'],
         usu_UsuarioCreacion = json['usu_UsuarioCreacion'],
       
@@ -139,6 +149,8 @@ class UsuarioViewModel {
         'usu_Telefono': usu_Telefono,
         'Mun_Id': Mun_Id,
         'mun_Descripcion':Mun_Descripcion,
+        'cat_Id':cat_Id,
+        'cur_Id':cur_Id,
         // 'usu_Admin': usu_Admin,
         // 'rol_Id': rol_Id,
         'usua_Estado': usu_Estado,

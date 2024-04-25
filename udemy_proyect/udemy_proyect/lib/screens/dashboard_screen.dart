@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:udemy_proyect/constants/icons.dart';
+import 'package:udemy_proyect/screens/user_screen.dart';
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({Key? key}) : super(key: key);
@@ -17,6 +19,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       child: Scaffold(
         body: Column(
           children: [
+
+            CustomAppBar(),
+
             AppBar(),
             Row(
               children: [
@@ -40,6 +45,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 ),
               ],
             ),
+
             Card(
               margin: const EdgeInsets.all(20.0),
               child: Padding(
@@ -54,8 +60,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   }
 }
 
+
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({Key? key}) : super(key: key);
+
 class AppBar extends StatelessWidget {
   const AppBar({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -92,11 +103,18 @@ class AppBar extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => user_screen(),
+              )
+                  );
+              },
+                icon: Image.asset(
+                  icUserOulined,
+                  height: 40,
+               ),
               ),
             ],
           ),
