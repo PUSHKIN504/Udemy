@@ -28,6 +28,7 @@ class _SignInState extends State<SignIn> {
 
   final FocusNode focusNodeEmail = FocusNode();
   final FocusNode focusNodePassword = FocusNode();
+  final List<int> idcursos = [];
 
   bool _obscureTextPassword = true;
 
@@ -247,26 +248,26 @@ class _SignInState extends State<SignIn> {
     try {
       final response = await http.get(Uri.parse(apiUrl));
       final res = jsonDecode(response.body);
-      if (res['data'].length == 1) {
-        final int id = res[0]['usu_Id'];
-        print(id.toString());
+
+      if (res['data'].length >= 1) {
         // ignore: avoid_print
         print('credenciales correctas');
         // ignore: unused_local_variable
         final usuario = UsuarioViewModel.fromJson(res['data'][0]);
+        
         final prefs = await SharedPreferences.getInstance();
+        prefs.setString('correo', usuario.usu_CorreoElectronico as String);
         prefs.setString('username', username);
         prefs.setString('password', password);
 
-        // ignore: unused_element
-        // Future<Map<String, String>> getCredentials() async {
+        // Future<Set<String>> getcorreo() async {
         //   final prefs = await SharedPreferences.getInstance();
-        //   final username = prefs.getString('username') ?? '';
-        //   final password = prefs.getString('password') ?? '';
-        //   return {'username': username};
+        //   final correo = prefs.getString('correo') ?? '';
+        //   // final password = prefs.getString('password') ?? '';
+        //   return {correo};
         //   // ignore: avoid_print, dead_code, prefer_interpolation_to_compose_strings
         // }
-
+        //   final correo = getcorreo();
         // ignore: avoid_print
         final usernamed = prefs.getString('username') ?? '';
         // ignore: avoid_print

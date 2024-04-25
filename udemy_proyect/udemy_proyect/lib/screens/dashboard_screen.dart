@@ -19,12 +19,38 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       child: Scaffold(
         body: Column(
           children: [
+
             CustomAppBar(),
+
+            AppBar(),
+            Row(
+              children: [
+                Expanded(
+                  child: Card(
+                    margin: const EdgeInsets.all(20.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: TotalEnrollmentsCard(),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Card(
+                    margin: const EdgeInsets.all(20.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: TotalCoursesCard(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
             Card(
               margin: const EdgeInsets.all(20.0),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: BarChartSample1(),
+                child: PieChartSample1(),
               ),
             ),
           ],
@@ -34,8 +60,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   }
 }
 
+
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);
+
+class AppBar extends StatelessWidget {
+  const AppBar({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +98,9 @@ class CustomAppBar extends StatelessWidget {
               Text(
                 "Gráficos",
                 style: Theme.of(context).textTheme.headline6!.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               IconButton(
                 onPressed: () {
@@ -96,127 +127,132 @@ class CustomAppBar extends StatelessWidget {
   }
 }
 
-class BarChartSample1 extends StatelessWidget {
+class PieChartSample1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200, // Altura específica para el gráfico
-      child: BarChart(
-        BarChartData(
-          alignment: BarChartAlignment.spaceAround,
-          maxY: 20,
-          titlesData: FlTitlesData(
-            leftTitles: SideTitles(
-              showTitles: true,
-              margin: 10,
-              reservedSize: 30,
+      child: PieChart(
+        PieChartData(
+          sections: [
+            PieChartSectionData(
+              value: 1,
+              color: Colors.green,
+              title: 'Programacion\n50%',
+              radius: 50,
+              titlePositionPercentageOffset: 0.55,
+              titleStyle: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-            bottomTitles: SideTitles(
-              showTitles: true,
-              margin: 10,
-              reservedSize: 30,
-              rotateAngle: 45,
-              getTitles: (value) {
-                switch (value.toInt()) {
-                  case 0:
-                    return 'Jan';
-                  case 1:
-                    return 'Feb';
-                  case 2:
-                    return 'Mar';
-                  case 3:
-                    return 'Apr';
-                  case 4:
-                    return 'May';
-                  case 5:
-                    return 'Jun';
-                  default:
-                    return '';
-                }
-              },
+            PieChartSectionData(
+              value: 1,
+              color: Colors.yellow,
+              title: 'Ofimatica\n50%',
+              radius: 50,
+              titlePositionPercentageOffset: 0.55,
+              titleStyle: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-          ),
-          barGroups: [
-            BarChartGroupData(
-              x: 0,
-              barRods: [
-                BarChartRodData(
-                  y: 10,
-                  colors: [Colors.blue],
-                ),
-              ],
-              showingTooltipIndicators: [0],
+            PieChartSectionData(
+              value: 0,
+              color: Colors.orange,
+              title: 'Diseño Grf\n17%',
+              radius: 50,
+              titlePositionPercentageOffset: 0.55,
+              titleStyle: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-            BarChartGroupData(
-              x: 1,
-              barRods: [
-                BarChartRodData(
-                  y: 15,
-                  colors: [Colors.blue],
-                ),
-              ],
-              showingTooltipIndicators: [0],
-            ),
-            BarChartGroupData(
-              x: 2,
-              barRods: [
-                BarChartRodData(
-                  y: 12,
-                  colors: [Colors.blue],
-                ),
-              ],
-              showingTooltipIndicators: [0],
-            ),
-            BarChartGroupData(
-              x: 3,
-              barRods: [
-                BarChartRodData(
-                  y: 18,
-                  colors: [Colors.blue],
-                ),
-              ],
-              showingTooltipIndicators: [0],
-            ),
-            BarChartGroupData(
-              x: 4,
-              barRods: [
-                BarChartRodData(
-                  y: 17,
-                  colors: [Colors.blue],
-                ),
-              ],
-              showingTooltipIndicators: [0],
-            ),
-            BarChartGroupData(
-              x: 5,
-              barRods: [
-                BarChartRodData(
-                  y: 14,
-                  colors: [Colors.blue],
-                ),
-              ],
-              showingTooltipIndicators: [0],
+            PieChartSectionData(
+              value: 0,
+              color: Colors.purple,
+              title: 'Finanzas\n14%',
+              radius: 50,
+              titlePositionPercentageOffset: 0.55,
+              titleStyle: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ],
           borderData: FlBorderData(
             show: false,
           ),
-          barTouchData: BarTouchData(
-            touchTooltipData: BarTouchTooltipData(
-              tooltipBgColor: Colors.blueGrey,
-              getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                return BarTooltipItem(
-                  rod.y.round().toString(),
-                  TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                );
-              },
-            ),
-          ),
+          sectionsSpace: 0,
+          centerSpaceRadius: 30,
         ),
       ),
+    );
+  }
+}
+
+class TotalEnrollmentsCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Aquí puedes calcular el total de inscripciones
+    // Por ejemplo, si tienes los datos de inscripciones, sería el total de esos datos.
+    int totalEnrollments = 2;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Total de Inscripciones:',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 50),
+        Text(
+          '$totalEnrollments',
+          style: TextStyle(
+            fontSize: 100,
+            color: Colors.blue,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class TotalCoursesCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Aquí puedes calcular el total de cursos
+    // Por ejemplo, si tienes los datos de cursos, sería el total de esos datos.
+    int totalCourses = 4;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Total de Cursos:',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 50),
+        Text(
+          '$totalCourses',
+          style: TextStyle(
+            fontSize: 100,
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 }

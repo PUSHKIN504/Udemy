@@ -112,6 +112,7 @@ class UsuarioViewModel {
       : usu_Id = json['usu_Id'],
         usu_Usuario = json['usu_Usuario'],
         usu_Contrasena = json['usu_Contrasena'],
+        
         Mun_Descripcion=json['mun_Descripcion'],
         usu_Nombre = json['usu_Nombre'],
         usu_Apellido = json['usu_Apellido'],
