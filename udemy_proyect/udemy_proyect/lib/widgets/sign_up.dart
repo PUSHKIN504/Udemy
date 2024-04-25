@@ -55,7 +55,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   Future<void> _fetchDropdownData() async {
-    String url = 'https://localhost:44392/API/Departamento/ListMun';
+    String url = 'http://UdemyHN.somee.com/API/Departamento/ListMun';
 
     try {
       final response = await http.get(Uri.parse(url));
@@ -101,7 +101,7 @@ class _SignUpState extends State<SignUp> {
       // Agregar más campos según sea necesario
     };
 
-    final Uri url = Uri.parse('https://localhost:44392/API/Usuario/crearusu');
+    final Uri url = Uri.parse('http://UdemyHN.somee.com/API/Usuario/crearusu');
 
     final http.Response response = await http.post(
       url,
