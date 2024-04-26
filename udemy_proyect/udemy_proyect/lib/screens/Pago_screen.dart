@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:udemy_proyect/screens/app_colors.dart';
+import 'package:udemy_proyect/screens/base_screen.dart';
 import 'package:udemy_proyect/screens/login_page.dart';
 import '../src/localization/flutter_credit_card.dart';
 
@@ -39,6 +41,10 @@ class MySampleState extends State<MySample> {
       isLightTheme ? SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light,
     );
     return MaterialApp(
+      routes: {
+        '/base_screen': (context) => const BaseScreen(),
+        // Otras rutas
+      },
       title: 'Pago',
       debugShowCheckedModeBanner: false,
       themeMode: isLightTheme ? ThemeMode.light : ThemeMode.dark,
@@ -52,6 +58,7 @@ class MySampleState extends State<MySample> {
           background: Colors.black,
           primary: Colors.black,
         ),
+        
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: const TextStyle(color: Colors.black),
           labelStyle: const TextStyle(color: Colors.black),
@@ -61,7 +68,7 @@ class MySampleState extends State<MySample> {
       ),
       darkTheme: ThemeData(
         textTheme: const TextTheme(
-          titleMedium: TextStyle(color: Colors.white, fontSize: 18),
+          titleMedium: TextStyle(color: Colors.black, fontSize: 18),
         ),
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,
@@ -70,8 +77,8 @@ class MySampleState extends State<MySample> {
           primary: Colors.white,
         ),
         inputDecorationTheme: InputDecorationTheme(
-          hintStyle: const TextStyle(color: Colors.white),
-          labelStyle: const TextStyle(color: Colors.white),
+          hintStyle: const TextStyle(color: Colors.black),
+          labelStyle: const TextStyle(color: Colors.black),
           focusedBorder: border,
           enabledBorder: border,
         ),
@@ -209,9 +216,13 @@ class MySampleState extends State<MySample> {
   }
 
   Future<void> _registerUser(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    final IdUs = prefs.getInt('IdUsu') ?? '';
+    final IdCur = prefs.getInt('cursoId') ?? '';
+
     final Map<String, dynamic> crearCurPUsu = {
-      'usu_Id': 1,
-      'cur_Id': 1,
+      'usu_Id': IdUs,
+      'cur_Id': IdCur,
     };
 
     final Uri url = Uri.parse('http://UdemyHN.somee.com/API/Usuario/crearCurPUsu');
@@ -225,23 +236,28 @@ class MySampleState extends State<MySample> {
     );
 
     if (response.statusCode == 200) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('Usuario Creado'),
-          backgroundColor: const Color.fromARGB(255, 54, 231, 5),
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          margin: const EdgeInsets.only(
-            top: 24,
-            right: 20,
-            left: 20,
-          ),
-          duration: const Duration(seconds: 2),
-        ),
-      );
-    } else {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: const Text('Curso Comprado Exitosamente'),
+      backgroundColor: const Color.fromARGB(255, 54, 231, 5),
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+      ),
+      margin: const EdgeInsets.only(
+        top: 24,
+        right: 20,
+        left: 20,
+      ),
+      duration: const Duration(seconds: 2),
+    ),
+  );
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const BaseScreen()),
+  );
+}
+else {
       // Maneja el error aquí
     }
   }

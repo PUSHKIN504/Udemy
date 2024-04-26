@@ -1,6 +1,7 @@
 import 'package:udemy_proyect/constants/color.dart';
 import 'package:udemy_proyect/constants/icons.dart';
 import 'package:udemy_proyect/models/lesson_dg.dart';
+import 'package:udemy_proyect/screens/Pago_screen.dart';
 import 'package:udemy_proyect/widgets/custom_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -269,7 +270,11 @@ class _EnrollBottomSheetState extends State<EnrollBottomSheet> {
           ),
           Expanded(
             child: CustomIconButton(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                // ignore: use_build_context_synchronously
+                context,
+                MaterialPageRoute(builder: (context) => const MySample()));},
               color: kPrimaryColor,
               height: 45,
               width: 45,

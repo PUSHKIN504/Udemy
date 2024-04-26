@@ -1,4 +1,5 @@
 import 'dart:convert';
+// ignore: unused_import
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -250,6 +251,12 @@ class _SignInState extends State<SignIn> {
       final res = jsonDecode(response.body);
 
       if (res['data'].length >= 1) {
+        // idcursos
+         res['data'].forEach((element) {
+          idcursos.add(element['cat_Id'] as int);
+        });
+
+        print(idcursos);
         // ignore: avoid_print
         print('credenciales correctas');
         // ignore: unused_local_variable
@@ -257,9 +264,13 @@ class _SignInState extends State<SignIn> {
         
         final prefs = await SharedPreferences.getInstance();
         prefs.setString('correo', usuario.usu_CorreoElectronico as String);
+        prefs.setInt('IdUsu', usuario.usu_Id as int);
         prefs.setString('username', username);
+        // prefs.setStringList('Categorias', idcursos.toString() );
+        prefs.setStringList('Categorias', idcursos.map((id) => id.toString()).toList());
         prefs.setString('password', password);
-
+        final cat = prefs.getStringList('Categorias') ?? '';
+        print(cat);
         // Future<Set<String>> getcorreo() async {
         //   final prefs = await SharedPreferences.getInstance();
         //   final correo = prefs.getString('correo') ?? '';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:udemy_proyect/constants/color.dart';
 import 'package:udemy_proyect/constants/size.dart';
 import 'package:udemy_proyect/models/category.dart';
@@ -26,6 +27,23 @@ class MisCursosScreen extends StatefulWidget {
 }
 
 class _MisCursosScreenState extends State<MisCursosScreen> {
+  List<Category> _filteredCategories = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCategories();
+  }
+
+Future<void> _loadCategories() async {
+  final prefs = await SharedPreferences.getInstance();
+  final categoryIds = prefs.getStringList('Categorias') ?? [];
+  print('Categorías cargadas desde SharedPreferences: $categoryIds');
+  setState(() {
+    _filteredCategories = categoryList.where((category) => categoryIds.contains(category.cat_Id.toString())).toList();
+  });
+}
+
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -34,7 +52,7 @@ class _MisCursosScreenState extends State<MisCursosScreen> {
         body: Column(
           children: [
             CustomAppBar(),
-            widget.userCategories.isNotEmpty ? Body(userCategories: widget.userCategories) : NoCursosMessage(),
+            _filteredCategories.isNotEmpty ? Body(filteredCategories: _filteredCategories) : NoCursosMessage(),
           ],
         ),
       ),
@@ -43,15 +61,12 @@ class _MisCursosScreenState extends State<MisCursosScreen> {
 }
 
 class Body extends StatelessWidget {
-  final List<String> userCategories;
-  const Body({Key? key, required this.userCategories}) : super(key: key);
+  final List<Category> filteredCategories;
+
+  const Body({Key? key, required this.filteredCategories}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Category> filteredCategories = categoryList
-        .where((category) => userCategories.contains(category.name))
-        .toList();
-
     return Column(
       children: [
         Padding(
@@ -99,7 +114,6 @@ class Body extends StatelessWidget {
     );
   }
 }
-
 class CategoryCard extends StatelessWidget {
   final Category category;
   const CategoryCard({

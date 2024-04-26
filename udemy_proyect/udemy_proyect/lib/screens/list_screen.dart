@@ -10,7 +10,7 @@ class TablaUsuarios extends StatefulWidget {
 }
 
 class _TablaUsuariosState extends State<TablaUsuarios> {
-  String url = 'https://localhost:44392/API/Usuario/List';
+  String url = 'http://UdemyHN.somee.com/API/Usuario/List';
 
   late Future<List<dynamic>> _getListado;
   bool _isSortAsc = true;

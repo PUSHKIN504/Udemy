@@ -1,3 +1,4 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:udemy_proyect/constants/color.dart';
 import 'package:udemy_proyect/models/course.dart';
 import 'package:udemy_proyect/screens/details_screen.dart';
@@ -13,6 +14,17 @@ class CourseScreen extends StatefulWidget {
 }
 
 class _CourseScreenState extends State<CourseScreen> {
+  void initState() {
+    super.initState();
+    _Curso();
+  }
+
+  Future<void> _Curso() async {
+    final prefs = await SharedPreferences.getInstance();
+    final cursoId = prefs.setInt('cursoId', 1);
+   print('curso: ${prefs.getInt('cursoId')}');
+   print( 'Usuario: ${prefs.getInt('IdUsu')}');
+  }
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(

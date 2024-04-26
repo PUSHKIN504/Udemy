@@ -12,52 +12,97 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
+
   @override
+
   Widget build(BuildContext context) {
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
+
       value: SystemUiOverlayStyle.light,
+
       child: Scaffold(
-        body: Column(
-          children: [
 
-            CustomAppBar(),
+        body: SingleChildScrollView( // Agregamos un SingleChildScrollView
 
-            AppBar(),
-            Row(
-              children: [
-                Expanded(
-                  child: Card(
-                    margin: const EdgeInsets.all(20.0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: TotalEnrollmentsCard(),
+          child: Column(
+
+            children: [
+
+              CustomAppBar(),
+
+              AppBar(),
+
+              Row(
+
+                children: [
+
+                  Expanded(
+
+                    child: Card(
+
+                      margin: const EdgeInsets.all(20.0),
+
+                      child: Padding(
+
+                        padding: const EdgeInsets.all(20.0),
+
+                        child: TotalEnrollmentsCard(),
+
+                      ),
+
                     ),
-                  ),
-                ),
-                Expanded(
-                  child: Card(
-                    margin: const EdgeInsets.all(20.0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: TotalCoursesCard(),
-                    ),
-                  ),
-                ),
-              ],
-            ),
 
-            Card(
-              margin: const EdgeInsets.all(20.0),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: PieChartSample1(),
+                  ),
+
+                  Expanded(
+
+                    child: Card(
+
+                      margin: const EdgeInsets.all(20.0),
+
+                      child: Padding(
+
+                        padding: const EdgeInsets.all(20.0),
+
+                        child: TotalCoursesCard(),
+
+                      ),
+
+                    ),
+
+                  ),
+
+                ],
+
               ),
-            ),
-          ],
+
+              Card(
+
+                margin: const EdgeInsets.all(20.0),
+
+                child: Padding(
+
+                  padding: const EdgeInsets.all(20.0),
+
+                  child: PieChartSample1(),
+
+                ),
+
+              ),
+
+            ],
+
+          ),
+
         ),
+
       ),
+
     );
+
   }
+
 }
 
 
@@ -137,49 +182,49 @@ class PieChartSample1 extends StatelessWidget {
             PieChartSectionData(
               value: 1,
               color: Colors.green,
-              title: 'Programacion\n50%',
+              title: 'Programacion',
               radius: 50,
               titlePositionPercentageOffset: 0.55,
               titleStyle: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
             PieChartSectionData(
               value: 1,
-              color: Colors.yellow,
-              title: 'Ofimatica\n50%',
+              color: Color.fromARGB(255, 31, 57, 122),
+              title: 'Ofimatica',
               radius: 50,
               titlePositionPercentageOffset: 0.55,
               titleStyle: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
             PieChartSectionData(
-              value: 0,
-              color: Colors.orange,
-              title: 'Diseño Grf\n17%',
+              value: 1,
+              color: Color.fromARGB(255, 116, 25, 119),
+              title: 'Diseño Grf',
               radius: 50,
               titlePositionPercentageOffset: 0.55,
               titleStyle: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
             PieChartSectionData(
-              value: 0,
-              color: Colors.purple,
-              title: 'Finanzas\n14%',
+              value: 2,
+              color: Color.fromARGB(255, 137, 29, 49),
+              title: 'Finanzas',
               radius: 50,
               titlePositionPercentageOffset: 0.55,
               titleStyle: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
           ],
@@ -205,7 +250,7 @@ class TotalEnrollmentsCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Total de Inscripciones:',
+          'Total de Usuarios:',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
